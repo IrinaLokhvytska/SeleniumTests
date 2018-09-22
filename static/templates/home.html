@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="todo-list-example">
+  <form v-on:submit.prevent="addNewTodo">
+    <div class="form-row">
+    <div class="col-10">
+      <input class="form-control"
+              v-model="newTodoText"
+              id="new-todo"
+              placeholder="Learn Selenium"
+      >
+    </div>
+    <div class="col-2">
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </div>
+  </div>
+  </form>
+  <br>
+  <ul class="list-group">
+      <li class="list-group-item" v-for="(id, title) in todos">
+        {{ title }}
+        <button class="btn btn-dark" v-on:click="removeTodo(id)">Remove</button>
+      </li>
+  </ul>
+</div>
+<script>
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
+      this.newTodoText = ''
+    },
+      removeTodo: function(index) {
+        this.todos.splice(index, 1)
+      }
+  }
+})
+</script>
+{% endblock %}
