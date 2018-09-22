@@ -3,6 +3,8 @@ from app.service_resource import home, page404
 
 
 class MyHandler(BaseHTTPRequestHandler):
+    """ Class for the HTTPServer Handler"""
+
     def do_HEAD(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
