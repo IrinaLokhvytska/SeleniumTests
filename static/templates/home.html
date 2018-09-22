@@ -17,13 +17,24 @@
   </form>
   <br>
   <ul class="list-group">
-      <li class="list-group-item" v-for="(id, title) in todos">
-        {{ title }}
-        <button class="btn btn-dark" v-on:click="removeTodo(id)">Remove</button>
-      </li>
+    <todo-item class="list-group-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></todo-item>
   </ul>
 </div>
 <script>
+Vue.component('todo-item', {
+    props: ['title'],
+    template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')" class="btn btn-dark">Remove</button>\
+    </li>\
+  '
+})
 
 new Vue({
   el: '#todo-list-example',
@@ -32,11 +43,11 @@ new Vue({
     todos: [
       {
         id: 1,
-        title: 'Set up project',
+        title: 'Run the project',
       },
       {
         id: 2,
-        title: 'Run Selenium Tests',
+        title: 'Start Selenium Tests',
       },
       {
         id: 3,
@@ -52,10 +63,7 @@ new Vue({
         title: this.newTodoText
       })
       this.newTodoText = ''
-    },
-      removeTodo: function(index) {
-        this.todos.splice(index, 1)
-      }
+    }
   }
 })
 </script>
