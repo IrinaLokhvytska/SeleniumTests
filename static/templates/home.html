@@ -17,24 +17,25 @@
   </form>
   <br>
   <ul class="list-group">
-    <todo-item class="list-group-item"
+    <li class="list-group-item"
+      is="todo-item"
       v-for="(todo, index) in todos"
       v-bind:key="todo.id"
       v-bind:title="todo.title"
       v-on:remove="todos.splice(index, 1)"
-    ></todo-item>
+    ></li>
   </ul>
 </div>
 <script>
 Vue.component('todo-item', {
     props: ['title'],
-    template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')" class="btn btn-dark">Remove</button>\
-    </li>\
-  '
-})
+    template: `
+    <li class="list-group-item">
+        <button v-on:click="$emit('remove')" class="btn btn-dark">Remove</button>
+        {% raw %}{{title}}{% endraw %}
+    </li>
+  `
+});
 
 new Vue({
   el: '#todo-list-example',
@@ -61,10 +62,10 @@ new Vue({
       this.todos.push({
         id: this.nextTodoId++,
         title: this.newTodoText
-      })
+      });
       this.newTodoText = ''
     }
   }
-})
+});
 </script>
 {% endblock %}

@@ -1,12 +1,12 @@
 Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">Remove</button>\
-    </li>\
-  ',
-  props: ['title']
-})
+    props: ['title'],
+    template: `
+    <li class="list-group-item">
+        <button v-on:click="$emit('remove')" class="btn btn-dark">Remove</button>
+        {% raw %}{{title}}{% endraw %}
+    </li>
+  `
+});
 
 new Vue({
   el: '#todo-list-example',
@@ -33,8 +33,8 @@ new Vue({
       this.todos.push({
         id: this.nextTodoId++,
         title: this.newTodoText
-      })
+      });
       this.newTodoText = ''
     }
   }
-})
+});
