@@ -16,8 +16,7 @@ before_install:
   - sudo mv -f ~/chromedriver /usr/local/share/
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-  - docker build -t selenium-tests .
-  - docker run -p 8000:8000 selenium-tests
+  - python main.py
 
 script:
   - whereis google-chrome-stable
