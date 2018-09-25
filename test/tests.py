@@ -18,14 +18,14 @@ class TestPage404(unittest.TestCase):
         )
         self.driver.get("http://localhost:8000/?")
 
-    def test_search_title(self):
+    def test_01_search_title(self):
         assert "SeleniumTests" in self.driver.title
 
-    def test_status_code(self):
+    def test_02_status_code(self):
         status_code = self.driver.find_element_by_id('status-code').text
         self.assertEqual('404', status_code)
 
-    def test_navigate_to_home_page(self):
+    def test_03_navigate_to_home_page(self):
         wait = WebDriverWait(self.driver, 5)
         link = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Home page')))
         try:
@@ -51,10 +51,10 @@ class TestToDoListsPage(unittest.TestCase):
         )
         self.driver.get("http://localhost:8000/")
 
-    def test_search_title(self):
+    def test_04_search_title(self):
         assert "SeleniumTests" in self.driver.title
 
-    def test_add_to_do(self):
+    def test_05_add_to_do(self):
         new_to_do = 'Add new todo in the list'
         input_area = self.driver.find_element_by_id('new-todo')
         input_area.send_keys(new_to_do)
@@ -64,7 +64,7 @@ class TestToDoListsPage(unittest.TestCase):
         self.assertEqual('Remove {}'.format(new_to_do), items[-1].text)
         self.assertEqual(4, len(items))
 
-    def test_remove_to_do(self):
+    def test_06_remove_to_do(self):
         to_do_list = self.driver.find_element_by_class_name('list-group')
         items = to_do_list.find_elements_by_tag_name("li")
         items[-1].find_element_by_tag_name("button").click()
