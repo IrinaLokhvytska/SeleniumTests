@@ -9,9 +9,9 @@ class TestPage404(unittest.TestCase):
 
     def setUp(self):
         chrome_options = webdriver.ChromeOptions()
-        chrome_options.binary_location("/usr/bin/google-chrome-stable")
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--no-sandbox')
         self.driver = webdriver.Chrome(
             executable_path="/usr/local/bin/chromedriver",
             options=chrome_options
