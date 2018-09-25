@@ -2,9 +2,6 @@ language: python
 addons:
   chrome: stable
 
-env:
-  - DISPLAY=:0
-
 python:
   - "3.6"
 
@@ -12,7 +9,7 @@ services:
   - docker
 
 before_install:
-  - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
+  - wget -N http://chromedriver.storage.googleapis.com/2.42/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
   - sudo mv -f ~/chromedriver /usr/local/share/
