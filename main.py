@@ -1,13 +1,12 @@
-from . import app
+from app.api import MyHandler, MyServer
 
 
 HOST_NAME = 'localhost'
 PORT_NUMBER = 8000
-server = app.api.MyServer
-handler = app.api.MyHandler
+
 
 if __name__ == '__main__':
-    server = server(HOST_NAME, PORT_NUMBER, handler)
+    server = MyServer(HOST_NAME, PORT_NUMBER, MyHandler)
     try:
         server.start_server()
     except KeyboardInterrupt:
