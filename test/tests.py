@@ -1,5 +1,6 @@
 import unittest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,13 +9,12 @@ from selenium.webdriver.support import expected_conditions as EC
 class TestPage404(unittest.TestCase):
 
     def setUp(self):
-        chrome_options = webdriver.ChromeOptions()
+        chrome_options = Options()
         chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
         self.driver = webdriver.Chrome(
             executable_path="/usr/local/bin/chromedriver",
-            options=chrome_options
+            chrome_options=chrome_options
         )
         self.driver.get("http://localhost:5000/?")
 
@@ -42,13 +42,12 @@ class TestPage404(unittest.TestCase):
 class TestToDoListsPage(unittest.TestCase):
 
     def setUp(self):
-        chrome_options = webdriver.ChromeOptions()
+        chrome_options = Options()
         chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
         self.driver = webdriver.Chrome(
             executable_path="/usr/local/bin/chromedriver",
-            options=chrome_options
+            chrome_options=chrome_options
         )
         self.driver.get("http://localhost:5000/")
 
