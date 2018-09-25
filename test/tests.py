@@ -16,7 +16,7 @@ class TestPage404(unittest.TestCase):
             executable_path="/usr/local/bin/chromedriver",
             options=chrome_options
         )
-        self.driver.get("http://localhost:5000/?")
+        self.driver.get("http://localhost:8000/?")
 
     def test_search_title(self):
         assert "SeleniumTests" in self.driver.title
@@ -45,15 +45,11 @@ class TestToDoListsPage(unittest.TestCase):
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
-        service_log_path = "chrome_driver.log"
-        service_args = ['--verbose']
         self.driver = webdriver.Chrome(
             executable_path="/usr/local/bin/chromedriver",
             options=chrome_options,
-            service_args=service_args,
-            service_log_path=service_log_path
         )
-        self.driver.get("http://localhost:5000/")
+        self.driver.get("http://localhost:8000/")
 
     def test_search_title(self):
         assert "SeleniumTests" in self.driver.title

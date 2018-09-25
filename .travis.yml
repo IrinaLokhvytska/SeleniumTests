@@ -2,6 +2,9 @@ language: python
 addons:
   chrome: stable
 
+env:
+  - DISPLAY=:0
+
 python:
   - "3.6"
 

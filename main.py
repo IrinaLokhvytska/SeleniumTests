@@ -2,7 +2,7 @@ from http.server import HTTPServer
 from app.api import MyHandler
 
 HOST_NAME = 'localhost'
-PORT_NUMBER = 5000
+PORT_NUMBER = 8000
 
 if __name__ == '__main__':
     server_class = HTTPServer
