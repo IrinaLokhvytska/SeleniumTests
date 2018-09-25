@@ -16,10 +16,14 @@ before_install:
   - sudo mv -f ~/chromedriver /usr/local/share/
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-  - python main.py
+
+install:
+  - pip install pipenv
+  - pipenv install
 
 script:
   - whereis google-chrome-stable
   - whereis chromedriver
   - flake8 --max-line-length=120
+  - python main.py
   - python test/tests.py
