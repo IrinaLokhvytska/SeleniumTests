@@ -4,8 +4,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from app.api import MyHandler, MyServer
-
 
 HOST_NAME = 'localhost'
 PORT_NUMBER = 8000
@@ -13,8 +11,6 @@ PORT_NUMBER = 8000
 
 class TestPage404(unittest.TestCase):
     def setUp(self):
-        self.server = MyServer(HOST_NAME, PORT_NUMBER, MyHandler)
-        self.server.start_server()
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
@@ -43,13 +39,10 @@ class TestPage404(unittest.TestCase):
 
     def tearDown(self):
         self.driver.close()
-        self.server.stop_server()
 
 
 class TestToDoListsPage(unittest.TestCase):
     def setUp(self):
-        self.server = MyServer(HOST_NAME, PORT_NUMBER, MyHandler)
-        self.server.start_server()
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
@@ -80,7 +73,6 @@ class TestToDoListsPage(unittest.TestCase):
 
     def tearDown(self):
         self.driver.close()
-        self.server.stop_server()
 
 
 if __name__ == "__main__":
