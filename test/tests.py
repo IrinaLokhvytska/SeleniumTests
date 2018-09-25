@@ -8,10 +8,13 @@ from selenium.webdriver.support import expected_conditions as EC
 class TestPage404(unittest.TestCase):
 
     def setUp(self):
-        # chrome_options = webdriver.ChromeOptions()
+        chrome_options = webdriver.ChromeOptions()
         # chrome_options.binary_location("/usr/local/bin/chromedriver")
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-gpu')
         self.driver = webdriver.Chrome(
-            executable_path="/usr/local/bin/chromedriver"
+            executable_path="/usr/local/bin/chromedriver",
+            options=chrome_options
         )
         self.driver.get("http://localhost:5000/?")
 
