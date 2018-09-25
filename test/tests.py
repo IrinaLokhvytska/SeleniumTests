@@ -8,9 +8,11 @@ from selenium.webdriver.support import expected_conditions as EC
 class TestPage404(unittest.TestCase):
 
     def setUp(self):
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.binary_location("/usr/local/bin/chromedriver")
-        self.driver = webdriver.Chrome(options=chrome_options)
+        # chrome_options = webdriver.ChromeOptions()
+        # chrome_options.binary_location("/usr/local/bin/chromedriver")
+        self.driver = webdriver.Chrome(
+            executable_path="C:/Chrome/chromedriver.exe"
+        )
         self.driver.get("http://localhost:5000/?")
 
     def test_search_title(self):
