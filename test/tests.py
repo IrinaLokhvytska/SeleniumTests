@@ -14,7 +14,7 @@ class TestPage404(unittest.TestCase):
         chrome_options.add_argument('--no-sandbox')
         self.driver = webdriver.Chrome(
             executable_path="/usr/local/bin/chromedriver",
-            chrome_options=chrome_options
+            options=chrome_options
         )
         self.driver.get("http://localhost:5000/?")
 
@@ -47,7 +47,7 @@ class TestToDoListsPage(unittest.TestCase):
         chrome_options.add_argument('--no-sandbox')
         self.driver = webdriver.Chrome(
             executable_path="/usr/local/bin/chromedriver",
-            chrome_options=chrome_options
+            options=chrome_options
         )
         self.driver.get("http://localhost:5000/")
 
