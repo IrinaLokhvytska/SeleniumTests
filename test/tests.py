@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class TestPage404(unittest.TestCase):
 
     def setUp(self):
-        self.executable_path = "C:/chromedriver.exe"
+        self.executable_path = "/usr/local/bin/chromedriver"
         self.driver = webdriver.Chrome(executable_path=self.executable_path)
         self.driver.get("http://localhost:5000/?")
 
