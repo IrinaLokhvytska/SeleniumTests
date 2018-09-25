@@ -11,7 +11,7 @@ class TestPage404(unittest.TestCase):
         # chrome_options = webdriver.ChromeOptions()
         # chrome_options.binary_location("/usr/local/bin/chromedriver")
         self.driver = webdriver.Chrome(
-            executable_path="C:/Chrome/chromedriver.exe"
+            executable_path="/usr/local/bin/chromedriver"
         )
         self.driver.get("http://localhost:5000/?")
 
