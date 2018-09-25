@@ -42,8 +42,14 @@ class TestPage404(unittest.TestCase):
 class TestToDoListsPage(unittest.TestCase):
 
     def setUp(self):
-        self.executable_path = "C:/chromedriver.exe"
-        self.driver = webdriver.Chrome(executable_path=self.executable_path)
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--no-sandbox')
+        self.driver = webdriver.Chrome(
+            executable_path="/usr/local/bin/chromedriver",
+            options=chrome_options
+        )
         self.driver.get("http://localhost:5000/")
 
     def test_search_title(self):
