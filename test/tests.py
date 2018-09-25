@@ -4,11 +4,17 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from app.api import MyHandler, MyServer
+
+
+HOST_NAME = 'localhost'
+PORT_NUMBER = 8000
 
 
 class TestPage404(unittest.TestCase):
-
     def setUp(self):
+        self.server = MyServer(HOST_NAME, PORT_NUMBER, MyHandler)
+        self.server.start_server()
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
@@ -16,7 +22,7 @@ class TestPage404(unittest.TestCase):
             executable_path="/usr/local/bin/chromedriver",
             options=chrome_options
         )
-        self.driver.get("http://localhost:8000/?")
+        self.driver.get("http://{0}:{1}/?".format(HOST_NAME, PORT_NUMBER))
 
     def test_navigate_to_home_page(self):
         wait = WebDriverWait(self.driver, 5)
@@ -29,21 +35,21 @@ class TestPage404(unittest.TestCase):
         self.assertTrue(self.driver.find_element_by_id('todo-list-example'))
 
     def test_search_title(self):
-        self.driver.get("http://localhost:8000/?")
         assert "SeleniumTests" in self.driver.title
 
     def test_status_code(self):
-        self.driver.get("http://localhost:8000/?")
         status_code = self.driver.find_element_by_id('status-code').text
         self.assertEqual('404', status_code)
 
     def tearDown(self):
         self.driver.close()
+        self.server.stop_server()
 
 
 class TestToDoListsPage(unittest.TestCase):
-
     def setUp(self):
+        self.server = MyServer(HOST_NAME, PORT_NUMBER, MyHandler)
+        self.server.start_server()
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
@@ -51,7 +57,7 @@ class TestToDoListsPage(unittest.TestCase):
             executable_path="/usr/local/bin/chromedriver",
             options=chrome_options,
         )
-        self.driver.get("http://localhost:8000/")
+        self.driver.get("http://{0}:{1}/".format(HOST_NAME, PORT_NUMBER))
 
     def test_add_to_do(self):
         new_to_do = 'Add new todo in the list'
@@ -74,6 +80,7 @@ class TestToDoListsPage(unittest.TestCase):
 
     def tearDown(self):
         self.driver.close()
+        self.server.stop_server()
 
 
 if __name__ == "__main__":

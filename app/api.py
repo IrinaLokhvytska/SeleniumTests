@@ -1,5 +1,19 @@
-from http.server import BaseHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from app.service_resource import home, page404
+
+
+class MyServer:
+    def __init__(self, host, port, handler):
+        self.host = host
+        self.port = port
+        self.handler = handler
+        self.server = HTTPServer((self.host, self.port), self.handler)
+
+    def start_server(self):
+        self.server.serve_forever()
+
+    def stop_server(self):
+        self.server.server_close()
 
 
 class MyHandler(BaseHTTPRequestHandler):
