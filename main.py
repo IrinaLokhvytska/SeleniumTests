@@ -1,8 +1,5 @@
 from app.api import MyHandler, MyServer
-
-
-HOST_NAME = 'localhost'
-PORT_NUMBER = 8000
+from config import HOST_NAME, PORT_NUMBER
 
 
 if __name__ == '__main__':
