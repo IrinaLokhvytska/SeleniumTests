@@ -6,21 +6,26 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from config import HOST_NAME, PORT_NUMBER, executable_path
+from config import Config
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 
 class TestPage404(unittest.TestCase):
+    config = Config()
+    host_name = config.host_name
+    port_number = config.port_number
+    path = 'dev'
+
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         self.driver = webdriver.Chrome(
-            executable_path=executable_path['prod'],
+            executable_path=self.config.get_executable_path(self.path),
             options=chrome_options
         )
-        self.driver.get("http://{0}:{1}/?".format(HOST_NAME, PORT_NUMBER))
+        self.driver.get("http://{0}:{1}/?".format(self.host_name, self.port_number))
 
     def test_navigate_to_home_page(self):
         wait = WebDriverWait(self.driver, 5)
@@ -44,4 +49,6 @@ class TestPage404(unittest.TestCase):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        TestPage404.path = sys.argv.pop()
     unittest.main()

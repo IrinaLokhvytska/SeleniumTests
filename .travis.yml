@@ -25,4 +25,4 @@ script:
   - whereis google-chrome-stable
   - whereis chromedriver
   - flake8 --max-line-length=120
-  - python main.py & python -m unittest tests/*
+  - python main.py & python -m unittest tests/* -prod

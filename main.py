@@ -1,9 +1,10 @@
 from app.api import MyHandler, MyServer
-from config import HOST_NAME, PORT_NUMBER
+from config import Config
 
 
 if __name__ == '__main__':
-    server = MyServer(HOST_NAME, PORT_NUMBER, MyHandler)
+    config = Config()
+    server = MyServer(config.host_name, config.port_number, MyHandler)
     try:
         server.start_server()
     except KeyboardInterrupt:
