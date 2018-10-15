@@ -15,14 +15,14 @@ class TestPage404(unittest.TestCase):
     config = Config()
     host_name = config.host_name
     port_number = config.port_number
-    path = 'dev'
+    version = 'production'
 
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         self.driver = webdriver.Chrome(
-            executable_path=self.config.get_executable_path(self.path),
+            executable_path=self.config.get_executable_path(self.version),
             options=chrome_options
         )
         self.driver.get("http://{0}:{1}/?".format(self.host_name, self.port_number))
@@ -49,6 +49,4 @@ class TestPage404(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        TestPage404.path = sys.argv.pop()
     unittest.main()

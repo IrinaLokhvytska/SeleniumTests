@@ -5,6 +5,6 @@ class Config:
         self.driver = 'chromedriver'
 
     def get_executable_path(self, version):
-        if version == 'prod':
+        if version == 'production':
             return '/usr/local/bin/{0}'.format(self.driver)
         return 'C:/{0}'.format(self.driver)
