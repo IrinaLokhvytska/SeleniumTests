@@ -7,22 +7,21 @@ from config import Config
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
+config = Config()
+host_name = config.host_name
+port_number = config.port_number
+
 
 class TestToDoListsPage(unittest.TestCase):
-    config = Config()
-    host_name = config.host_name
-    port_number = config.port_number
-    version = 'production'
-
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         self.driver = webdriver.Chrome(
-            executable_path=self.config.get_executable_path(self.version),
+            executable_path=config.get_executable_path(),
             options=chrome_options,
         )
-        self.driver.get("http://{0}:{1}/".format(self.host_name, self.port_number))
+        self.driver.get("http://{0}:{1}/".format(host_name, port_number))
 
     def test_add_to_do(self):
         new_to_do = 'Add new todo in the list'
